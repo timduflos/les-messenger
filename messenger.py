@@ -23,15 +23,19 @@ print('=== Messenger ===')
 print('u.users')
 print('G.Groupes')
 print('x. Leave')
+print('m.messages')
 choice = input('Select an option: ')
 if choice == 'x':
     print('Bye!')
 elif choice == 'u':
  for i in range (len(server['users'])):
     print(server['users'][i]['name'],server['users'][i]['id'])
-elif choice== 'G':
+elif choice == 'G':
    for i in range (len(server['channels'])):
     print(server['channels'][i]['name'],server['channels'][i]['member_ids'])
-
+elif choice == 'm':
+   for i in range (len(server['messages'])):
+    print(server['messages'])
+   
 else:
     print('Unknown option:', choice)
