@@ -1,23 +1,12 @@
 from datetime import datetime
+import json
 
-server = {
-    'users': [
-        {'id': 41, 'name': 'Alice'},
-        {'id': 23, 'name': 'Bob'}
-    ],
-    'channels': [
-        {'id': 12, 'name': 'Town square', 'member_ids': [41, 23]}
-    ],
-    'messages': [
-        {
-            'id': 18,
-            'reception_date': datetime.now(),
-            'sender_id': 41,
-            'channel': 12,
-            'content': 'Hi 👋'
-        }
-    ]
-}
+with open('server.json') as file:
+   server = json.loads(file)
+
+def save_server():
+   with open('server.json') as file:
+      json.dump(server, file)
 
 def f():
    print('=== Messenger ===')
@@ -57,6 +46,7 @@ def afficherusers():
         nom=input('nom du user')
         newid= len(server['users'])+1
         server['users'].append({'id':newid , 'name':nom})
+        save_server()
         f()
 
 def affichergroupe():
@@ -75,6 +65,9 @@ def affichergroupe():
       for i in range(nb+1):
          x=input('id uttilisateur')
          server['channels'][-1]['member_ids'].append(x)
-         f()
+      save_server()
+      f()
+
          
 f()
+
